@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Array Cardio 💪</title>
 </head>
+
 <body>
   <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
   <script>
@@ -34,20 +36,47 @@
       'Berne, Eric', 'Berra, Yogi', 'Berry, Wendell', 'Bevan, Aneurin', 'Ben-Gurion, David', 'Bevel, Ken', 'Biden, Joseph', 'Bennington, Chester', 'Bierce, Ambrose',
       'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
     ];
-    
+
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const fifteen = inventors.filter(function (a) {
+      if (a.year >= 1500 && a.year < 1600) {
+        return true;
+      }
+    });
+
+    console.table(fifteen);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    const fullName = inventors.map(function (a) {
+      return a.first + " " + a.last;
+    });
+
+    console.log(fullName)
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const birthSort = inventors.sort(function (a, b) {
+      return a.year - b.year;
+    });
+
+    console.table(birthSort);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    const totalYears = inventors.reduce(function (total, inventor) {
+      return total + (inventor.passed - inventor.year);
+    }, 0);
+
+    console.log(totalYears);
 
     // 5. Sort the inventors by years lived
+    const ageSort = inventors.sort(function (a, b) {
+      return (b.passed - b.year) - (a.passed - a.year);
+    });
+
+    console.table(ageSort);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -55,11 +84,23 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const lastSort = inventors.sort(function (a, b) {
+      let x = a.last.toLowerCase();
+      let y = b.last.toLowerCase();
+      if (x < y) {
+        return -1;
+      } else if (x > y) {
+        return 1
+      };
+    });
+
+    console.table(lastSort)
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
 
   </script>
 </body>
+
 </html>
